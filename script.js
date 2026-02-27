@@ -13,8 +13,6 @@ let waitHue = 0;
 let isKeyboardMode = false;
 
 function updateInputModeUI() {
-  inputLabel.textContent = isKeyboardMode ? "Keyboard Mode" : "Mouse Mode";
-
   if (state === "init" || state === "result") {
     area.textContent = isKeyboardMode
       ? "Press Enter/Space to start"
@@ -34,9 +32,6 @@ function initTheme() {
   if (savedTheme === "dark") {
     document.body.classList.add("dark-mode");
     themeToggle.checked = true;
-    themeLabel.textContent = "Dark Mode";
-  } else {
-    themeLabel.textContent = "Light Mode";
   }
 }
 
@@ -109,7 +104,6 @@ inputToggle.addEventListener("change", () => {
 themeToggle.addEventListener("change", () => {
   document.body.classList.toggle("dark-mode");
   const isDark = document.body.classList.contains("dark-mode");
-  themeLabel.textContent = isDark ? "Dark Mode" : "Light Mode";
   localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 
