@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>反射神経ゲーム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="controls-container">
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="themeToggle">
+          <input type="checkbox" id="themeToggle" />
+          <span class="slider"></span>
+        </label>
+        <span id="themeLabel">Light Mode</span>
+      </div>
+
+      <div class="input-switch-wrapper">
+        <label class="theme-switch" for="inputToggle">
+          <input type="checkbox" id="inputToggle" />
+          <span class="slider"></span>
+        </label>
+        <span id="inputLabel">Mouse Mode</span>
+      </div>
+    </div>
+
+    <div id="gameArea">Click here to start</div>
+
+    <div id="historyContainer">
+      <ul id="historyList"></ul>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
