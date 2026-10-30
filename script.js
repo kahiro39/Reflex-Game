@@ -43,6 +43,7 @@ function resetGameState() {
   clearTimeout(timeoutId);
   state = "init";
   area.style.backgroundColor = "var(--area-bg)";
+  area.style.boxShadow = `${shadowX} ${shadowY} var(--area-shadow)`;
   area.style.color = "var(--text-color)";
   updateInputModeUI();
 }
@@ -117,6 +118,7 @@ themeToggle.addEventListener("change", () => {
   document.body.classList.toggle("dark-mode");
   const isDark = document.body.classList.contains("dark-mode");
   localStorage.setItem("theme", isDark ? "dark" : "light");
+  resetGameState();
 });
 
 area.addEventListener("mousedown", (e) => {
