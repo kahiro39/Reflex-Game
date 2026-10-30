@@ -2,10 +2,12 @@
   --bg-color: #f8f9fa;
   --text-color: #333;
   --area-bg: #ffffff;
-  --area-shadow: rgba(0, 0, 0, 0.05);
+  --area-shadow: color-mix(in srgb, var(--area-bg) 50%, black);
   --history-text: #888;
   --history-first: #111;
   --toggle-bg: #ddd;
+  --shadow-x: 12px;
+  --shadow-y: 12px;
 }
 
 body.dark-mode {
@@ -112,8 +114,8 @@ input:checked + .slider:before {
   font-weight: 700;
   cursor: pointer;
   user-select: none;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px var(--area-shadow);
+  /* border-radius: 20px; */
+  box-shadow: var(--shadow-x) var(--shadow-y) var(--area-shadow);
   text-align: center;
   transition:
     transform 0.1s ease,
@@ -136,7 +138,7 @@ input:checked + .slider:before {
 
 #historyList {
   list-style-type: none;
-  margin: 0;
+  margin: 20px;
   padding: 0;
   display: flex;
   flex-direction: column;

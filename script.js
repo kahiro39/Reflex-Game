@@ -4,6 +4,10 @@ const themeToggle = document.getElementById("themeToggle");
 const themeLabel = document.getElementById("themeLabel");
 const inputToggle = document.getElementById("inputToggle");
 const inputLabel = document.getElementById("inputLabel");
+const rootStyles = getComputedStyle(document.documentElement);
+
+const shadowX = rootStyles.getPropertyValue('--shadow-x').trim();
+const shadowY = rootStyles.getPropertyValue('--shadow-y').trim();
 
 let state = "init";
 let startTime;
@@ -64,7 +68,10 @@ function addRecord(time) {
 function handleGameAction() {
   if (state === "init" || state === "result") {
     state = "waiting";
-    area.style.backgroundColor = getWaitColor();
+    const areaColor = getWaitColor();
+    const areaColorShadow = `color-mix(in srgb, ${areaColor} 50%, black)`;
+    area.style.backgroundColor = `${areaColor}`;
+    area.style.boxShadow = `${shadowX} ${shadowY} ${areaColorShadow}`;
     area.style.color = "white";
     area.textContent = "Wait...";
 
@@ -72,7 +79,10 @@ function handleGameAction() {
 
     timeoutId = setTimeout(() => {
       state = "ready";
-      area.style.backgroundColor = getTargetColor();
+      const areaColor = getTargetColor();
+      const areaColorShadow = `color-mix(in srgb, ${areaColor} 50%, black)`;
+      area.style.backgroundColor = `${areaColor}`;
+      area.style.boxShadow = `${shadowX} ${shadowY} ${areaColorShadow}`;
       area.textContent = "Action!";
       startTime = Date.now();
     }, randomDelay);
@@ -80,6 +90,7 @@ function handleGameAction() {
     clearTimeout(timeoutId);
     state = "result";
     area.style.backgroundColor = "var(--area-bg)";
+    area.style.boxShadow = `${shadowX} ${shadowY} var(--area-shadow)`;
     area.style.color = "var(--text-color)";
     area.textContent = "Too early. Retry.";
     setTimeout(updateInputModeUI, 1500);
@@ -87,6 +98,7 @@ function handleGameAction() {
     const reactionTime = Date.now() - startTime;
     state = "result";
     area.style.backgroundColor = "var(--area-bg)";
+    area.style.boxShadow = `${shadowX} ${shadowY} var(--area-shadow)`;
     area.style.color = "var(--text-color)";
     area.textContent = `${reactionTime} ms`;
     addRecord(reactionTime);
